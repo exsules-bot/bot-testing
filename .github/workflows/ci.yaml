@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail
+        run: |
+          sleep 60
+          exit 1
+
+  conclusion:
+    needs: [ test ]
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    steps:
+      - name: conclusion
+        run: exit 0
